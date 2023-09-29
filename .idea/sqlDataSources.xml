@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="645ccde5-960e-484e-b5e4-f74865f56015" name="postgres@sql_training_program Mapping">
+      <data-sources db="083e94eb-ce15-4f66-9c04-e4bf4bb5b562" ddl="cdaa4d3c-dc9d-4c53-817c-7ba5c982eb55" />
+      <scope>
+        <node kind="database" qname="lougeh_supermarket" />
+      </scope>
+    </mapping>
+  </component>
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="cdaa4d3c-dc9d-4c53-817c-7ba5c982eb55" />
+          <option name="name" value="postgres@sql_training_program (DDL)" />
+          <option name="dbmsName" value="POSTGRES" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$" />
+            </array>
+          </option>
+          <option name="outLayout" value="File per object by schema.groovy" />
+        </State>
+      </list>
+    </option>
+  </component>
+</project>
