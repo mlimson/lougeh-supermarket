@@ -8,7 +8,8 @@ create table salesline
         references inventory,
     itemcode       integer
         references item,
-    sqty           integer
+    sqty           integer,
+    saleprice decimal(10,2)
 );
 
 alter table salesline
