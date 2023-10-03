@@ -10,3 +10,6 @@ create table deliverytransaction
 alter table deliverytransaction
     owner to postgres;
 
+create index idx_suppliercode
+    on deliverytransaction (suppliercode);
+

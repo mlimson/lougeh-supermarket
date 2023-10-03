@@ -10,3 +10,6 @@ create table salestransaction
 alter table salestransaction
     owner to postgres;
 
+create index idx_customercode
+    on salestransaction (customercode);
+

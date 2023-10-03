@@ -15,3 +15,9 @@ create table deliveryline
 alter table deliveryline
     owner to postgres;
 
+create index idx_dtransactionid
+    on deliveryline (dtransactionid);
+
+create index idx_dlitemcode
+    on deliveryline (itemcode);
+

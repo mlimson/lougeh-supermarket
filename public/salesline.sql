@@ -9,9 +9,15 @@ create table salesline
     itemcode       integer
         references item,
     sqty           integer,
-    saleprice decimal(10,2)
+    saleprice      numeric(10, 2)
 );
 
 alter table salesline
     owner to postgres;
+
+create index idx_stransactionid
+    on salesline (stransactionid);
+
+create index idx_slitemcode
+    on salesline (itemcode);
 

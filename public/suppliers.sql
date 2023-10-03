@@ -9,3 +9,6 @@ create table suppliers
 alter table suppliers
     owner to postgres;
 
+create index idx_companyname
+    on suppliers (companyname);
+

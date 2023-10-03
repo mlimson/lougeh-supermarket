@@ -4,7 +4,9 @@
     <mapping uuid="d13338cb-8dee-45bc-883f-626de92dca75" name="DDL Mapping [2]">
       <data-sources db="083e94eb-ce15-4f66-9c04-e4bf4bb5b562" ddl="bf2dcef8-178e-4c1b-b518-5f1ecd7ea952" />
       <scope>
-        <node kind="database" qname="lgs_supermarket" />
+        <node kind="database" qname="lgs_supermarket">
+          <node kind="schema" qname="public" />
+        </node>
       </scope>
     </mapping>
   </component>
