@@ -34,7 +34,8 @@ CREATE TABLE Uom (
 CREATE TABLE Item (
     ItemCode SERIAL PRIMARY KEY,
     ItemBarcode char(13),
-    ItemDescription varchar(50)
+    ItemDescription varchar(50),
+    ItemPrice decimal(10,2)
 );
 
 ALTER SEQUENCE item_itemcode_seq RESTART WITH 2000;
@@ -101,8 +102,9 @@ CREATE TABLE SalesLine (
 
 ALTER TABLE SalesLine DROP COLUMN ItemPrice;
 
-ALTER TABLE SalesLine ADD COLUMN SalePrice decimal(10,2);
+ALTER TABLE Item ADD COLUMN ItemPrice decimal(10,2);
 
+SELECT * FROM Item;
 INSERT INTO Uom (Description) VALUES ('PIECE'), ('PACK'), ('BOX'), ('BAG'), ('CAN'), ('FOOT'), ('JUG'), ('HEAD'), ('DRUM'), ('REAM');
 INSERT INTO Item (ItemBarcode, ItemDescription, ItemPrice)
 VALUES
@@ -199,5 +201,3 @@ WHERE
     Suppliers.SupplierCode = 1000
 GROUP BY
     Suppliers.SupplierCode, Suppliers.CompanyName, SA.SStreet, SA.SCity, SA.SCountry, SC.ContactNumber;
-
-CREATE VIEW
