@@ -3,7 +3,7 @@ create table item
     itemcode        serial
         primary key,
     itembarcode     char(13),
-    itemdescription varchar(50),
+    itemdescription varchar(255),
     itemprice       numeric(10, 2)
 );
 

@@ -2,7 +2,7 @@ create table uom
 (
     uomid       serial
         primary key,
-    description varchar(50)
+    description varchar(255)
 );
 
 alter table uom

@@ -4,9 +4,9 @@ create table customeraddress
         primary key,
     customercode integer
         references customers,
-    cstreet      varchar(50),
-    ccity        varchar(50),
-    ccountry     varchar(50)
+    cstreet      varchar(255),
+    ccity        varchar(255),
+    ccountry     varchar(255)
 );
 
 alter table customeraddress

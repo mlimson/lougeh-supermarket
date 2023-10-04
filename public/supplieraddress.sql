@@ -4,9 +4,9 @@ create table supplieraddress
         primary key,
     suppliercode integer
         references suppliers,
-    sstreet      varchar(50),
-    scity        varchar(50),
-    scountry     varchar(50)
+    sstreet      varchar(255),
+    scity        varchar(255),
+    scountry     varchar(255)
 );
 
 alter table supplieraddress

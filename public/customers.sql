@@ -2,8 +2,8 @@ create table customers
 (
     customercode serial
         primary key,
-    firstname    varchar(50),
-    lastname     varchar(50),
+    firstname    varchar(255),
+    lastname     varchar(255),
     timestamp    timestamp
 );
 
