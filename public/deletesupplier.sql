@@ -3,10 +3,18 @@ create procedure deletesupplier(INOUT supcode integer, INOUT addressid integer D
 as
 $$
     BEGIN
-        addressId = (SELECT SAddressId FROM SupplierAddress WHERE SupplierCode=supCode);
-        DELETE FROM SupplierContact WHERE SAddressId = addressId;
-        DELETE FROM SupplierAddress WHERE SupplierCode = supCode;
-        DELETE FROM Suppliers WHERE SupplierCode = supCode;
+        IF EXISTS(SELECT SupplierCode FROM suppliers WHERE suppliercode=supCode)
+            THEN
+                IF NOT EXISTS(SELECT SupplierCode FROM deliverytransaction WHERE suppliercode=supCode)
+                    THEN
+                        addressId = (SELECT SAddressId FROM SupplierAddress WHERE SupplierCode=supCode);
+                        DELETE FROM SupplierContact WHERE SAddressId = addressId;
+                        DELETE FROM SupplierAddress WHERE SupplierCode = supCode;
+                        DELETE FROM Suppliers WHERE SupplierCode = supCode;
+                    ELSE RAISE 'Cannot delete supplier with transactions.';
+                end if;
+            ELSE RAISE 'Supplier does not exists.';
+        END IF;
         COMMIT;
     END
 $$;
