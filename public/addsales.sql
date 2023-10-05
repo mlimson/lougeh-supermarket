@@ -11,7 +11,7 @@ $$
             invId = (SELECT inventoryid FROM inventory WHERE itemcode = itmCode);
             INSERT INTO salesline (stransactionid, inventoryid, itemcode, sqty, saleprice) VALUES (stransId, invId, itmCode, qty, itmCost);
         ELSE
-            RAISE NOTICE 'Not enough quantity in inventory.';
+            RAISE 'Not enough quantity in inventory.';
         END IF;
         COMMIT;
     END
