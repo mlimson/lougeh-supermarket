@@ -5,8 +5,8 @@ $$
     BEGIN
         INSERT INTO deliverytransaction (suppliercode, timestamp) VALUES (supCode, current_timestamp)
         RETURNING (SELECT currval('deliverytransaction_dtransactionid_seq')) INTO dtransId;
-        UPDATE inventory SET itemstock = itemstock + qty WHERE itemcode = itmCode
-        RETURNING (SELECT currval('inventory_inventoryid_seq')) INTO invId;
+        UPDATE inventory SET itemstock = itemstock + qty WHERE itemcode = itmCode;
+        invId = (SELECT inventoryid FROM inventory WHERE itemcode = itmCode);
         INSERT INTO deliveryline (dtransactionid, inventoryid, itemcode, dqty, itemcost) VALUES (dtransId, invId, itmCode, qty, itmCost);
         COMMIT;
     END
