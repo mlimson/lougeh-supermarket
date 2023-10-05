@@ -1,4 +1,4 @@
-create procedure adddelivery(IN supcode integer, IN itmcode integer, IN qty integer, IN itmcost numeric, IN dtransid integer DEFAULT 0, IN invid integer DEFAULT 0)
+create procedure adddelivery(IN supcode integer, IN itmcode integer, IN qty integer, IN itmcost numeric, INOUT dtransid integer DEFAULT 0, INOUT invid integer DEFAULT 0)
     language plpgsql
 as
 $$
@@ -12,5 +12,5 @@ $$
     END
 $$;
 
-alter procedure adddelivery(integer, integer, integer, numeric, integer, integer) owner to postgres;
+alter procedure adddelivery(integer, integer, integer, numeric, inout integer, inout integer) owner to postgres;
 
