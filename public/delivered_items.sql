@@ -5,7 +5,8 @@ SELECT i.itemcode,
        dt."timestamp"
 FROM deliverytransaction dt
          LEFT JOIN deliveryline dl ON dt.dtransactionid = dl.dtransactionid
-         LEFT JOIN item i ON dl.itemcode = i.itemcode;
+         LEFT JOIN item i ON dl.itemcode = i.itemcode
+ORDER BY dt."timestamp";
 
 alter table delivered_items
     owner to postgres;
