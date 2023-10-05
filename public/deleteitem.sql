@@ -3,8 +3,24 @@ create procedure deleteitem(INOUT itmcode integer)
 as
 $$
     BEGIN
-        DELETE FROM itemuom WHERE itemcode = itmCode;
-        DELETE FROM item WHERE itemcode = itmCode;
+        IF EXISTS(SELECT itemcode FROM item WHERE itemcode = itmCode)
+            THEN
+               IF NOT EXISTS(SELECT itemcode FROM deliveryline WHERE itemcode = itmCode)
+                    THEN
+                        IF NOT EXISTS(SELECT itemcode FROM salesline WHERE itemcode = itmCode)
+                                THEN
+                                    DELETE FROM inventory WHERE itemcode = itmCode;
+                                    DELETE FROM itemuom WHERE itemcode = itmCode;
+                                    DELETE FROM item WHERE itemcode = itmCode;
+                                ELSE
+                                    RAISE NOTICE 'Item used in sales transactions.';
+                        END IF;
+                    ELSE
+                        RAISE NOTICE 'Item used in delivery transactions.';
+                END IF;
+            ELSE
+                RAISE NOTICE 'Item does not exists.';
+        END IF;
         COMMIT;
     END
 $$;
