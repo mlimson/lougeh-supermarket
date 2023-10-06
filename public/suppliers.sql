@@ -2,7 +2,7 @@ create table suppliers
 (
     suppliercode serial
         primary key,
-    companyname  varchar(255),
+    companyname  varchar(255) not null,
     timestamp    timestamp
 );
 

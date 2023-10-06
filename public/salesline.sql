@@ -2,13 +2,13 @@ create table salesline
 (
     slineid        serial
         primary key,
-    stransactionid integer
+    stransactionid integer not null
         references salestransaction,
-    inventoryid    integer
+    inventoryid    integer not null
         references inventory,
-    itemcode       integer
+    itemcode       integer not null
         references item,
-    sqty           integer,
+    sqty           integer not null,
     saleprice      numeric(10, 2)
 );
 

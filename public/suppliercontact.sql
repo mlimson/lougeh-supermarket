@@ -2,7 +2,7 @@ create table suppliercontact
 (
     scontactid    serial
         primary key,
-    saddressid    integer
+    saddressid    integer not null
         references supplieraddress,
     contactnumber varchar(15)
 );

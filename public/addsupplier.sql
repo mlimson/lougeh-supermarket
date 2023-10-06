@@ -10,7 +10,6 @@ $$
         RETURNING (SELECT currval('supplieraddress_saddressid_seq')) INTO addressId;
 
         INSERT INTO SupplierContact (SAddressId, ContactNumber)VALUES (addressId, contact);
-
         COMMIT;
     END
 $$;

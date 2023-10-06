@@ -2,9 +2,9 @@ create table inventory
 (
     inventoryid serial
         primary key,
-    itemcode    integer
+    itemcode    integer not null
         references item,
-    itemuomid   integer
+    itemuomid   integer not null
         references itemuom,
     itemstock   integer
 );

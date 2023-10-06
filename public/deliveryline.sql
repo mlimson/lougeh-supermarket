@@ -2,13 +2,13 @@ create table deliveryline
 (
     dlineid        serial
         primary key,
-    dtransactionid integer
+    dtransactionid integer not null
         references deliverytransaction,
-    inventoryid    integer
+    inventoryid    integer not null
         references inventory,
-    itemcode       integer
+    itemcode       integer not null
         references item,
-    dqty           integer,
+    dqty           integer not null,
     itemcost       numeric(10, 2)
 );
 

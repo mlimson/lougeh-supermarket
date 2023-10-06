@@ -2,7 +2,7 @@ create table customercontact
 (
     contactid      serial
         primary key,
-    caddressid     integer
+    caddressid     integer not null
         references customeraddress,
     ccontactnumber varchar(15)
 );

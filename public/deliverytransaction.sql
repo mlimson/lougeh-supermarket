@@ -2,7 +2,7 @@ create table deliverytransaction
 (
     dtransactionid serial
         primary key,
-    suppliercode   integer
+    suppliercode   integer not null
         references suppliers,
     timestamp      timestamp
 );

@@ -2,7 +2,7 @@ create table salestransaction
 (
     stransactionid serial
         primary key,
-    customercode   integer
+    customercode   integer not null
         references customers,
     timestamp      timestamp
 );
