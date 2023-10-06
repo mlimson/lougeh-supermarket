@@ -7,7 +7,7 @@ $$
             THEN
                 IF ((SELECT itemcode FROM salesline WHERE stransactionid = stransId) <> itmCode)
                     THEN
-                        IF(((SELECT itemstock FROM inventory WHERE itemcode = itmCode)  - qty) > 0 )
+                        IF(((SELECT itemstock FROM inventory WHERE itemcode = itmCode)  - qty) >= 0 )
                             THEN
                                 UPDATE inventory SET itemstock = itemstock + qty WHERE inventoryid = (SELECT inventoryid FROM salesline WHERE stransactionid = stransId);
                                 UPDATE inventory SET itemstock = itemstock - qty WHERE itemcode = itmCode
@@ -19,17 +19,17 @@ $$
                 END IF;
                 IF((SELECT sqty FROM salesline WHERE stransactionid = stransId AND itemcode = itmCode) <> qty)
                     THEN
-                        IF((SELECT sqty FROM salesline WHERE stransactionid = stransId AND itemcode = itmCode) > qty)
+                        IF((SELECT sqty FROM salesline WHERE stransactionid = stransId) > qty)
                             THEN
-                                qty = (SELECT sqty FROM salesline WHERE stransactionid = stransId AND itemcode = itmCode)-qty;
-                                UPDATE salesline SET sqty = sqty+ qty WHERE stransactionid = stransId AND itemcode = itmCode;
+                                qty = (SELECT sqty FROM salesline WHERE stransactionid = stransId)-qty;
+                                UPDATE salesline SET sqty = sqty - qty WHERE stransactionid = stransId;
                                 UPDATE inventory SET itemstock = itemstock + qty WHERE itemcode = itmCode;
-                        ELSEIF ((SELECT sqty FROM salesline WHERE stransactionid = stransId AND itemcode = itmCode) < qty)
+                        ELSEIF ((SELECT sqty FROM salesline WHERE stransactionid = stransId) < qty)
                             THEN
-                                IF (((SELECT itemstock FROM inventory WHERE itemcode = itmCode)-(qty - (SELECT sqty FROM salesline WHERE stransactionid = stransId AND itemcode = itmCode)))>0)
+                                IF (((SELECT itemstock FROM inventory WHERE itemcode = itmCode)-(qty - (SELECT sqty FROM salesline WHERE stransactionid = stransId))) >= 0)
                                     THEN
-                                        qty = qty - (SELECT sqty FROM salesline WHERE stransactionid = stransId AND itemcode = itmCode);
-                                        UPDATE salesline SET sqty = sqty + qty WHERE stransactionid = stransId AND itemcode = itmCode;
+                                        qty = qty - (SELECT sqty FROM salesline WHERE stransactionid = stransId);
+                                        UPDATE salesline SET sqty = sqty + qty WHERE stransactionid = stransId;
                                         UPDATE inventory SET itemstock = itemstock - qty WHERE itemcode = itmCode;
                                     ELSE RAISE 'Updating the quantity will result in a negative inventory.';
                                 END IF;
