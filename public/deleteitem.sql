@@ -13,13 +13,13 @@ $$
                                     DELETE FROM itemuom WHERE itemcode = itmCode;
                                     DELETE FROM item WHERE itemcode = itmCode;
                                 ELSE
-                                    RAISE NOTICE 'Item used in sales transactions.';
+                                    RAISE 'Item used in sales transactions.';
                         END IF;
                     ELSE
-                        RAISE NOTICE 'Item used in delivery transactions.';
+                        RAISE 'Item used in delivery transactions.';
                 END IF;
             ELSE
-                RAISE NOTICE 'Item does not exists.';
+                RAISE 'Item does not exists.';
         END IF;
         COMMIT;
     END

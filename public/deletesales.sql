@@ -4,14 +4,14 @@ as
 $$
     BEGIN
         IF EXISTS (SELECT stransactionid FROM salestransaction WHERE stransactionid = sTransId)
-        THEN
-            qty = (SELECT sqty FROM salesline WHERE stransactionid = sTransId);
-            itmCode = (SELECT itemcode FROM salesline WHERE stransactionid = sTransId);
-            UPDATE inventory SET itemstock = itemstock + qty WHERE itemcode = itmCode;
-            DELETE FROM salesline WHERE stransactionid = sTransId;
-            DELETE FROM salestransaction WHERE stransactionid = sTransId;
-        ELSE
-            RAISE NOTICE 'Transaction not found.';
+            THEN
+                qty = (SELECT sqty FROM salesline WHERE stransactionid = sTransId);
+                itmCode = (SELECT itemcode FROM salesline WHERE stransactionid = sTransId);
+                UPDATE inventory SET itemstock = itemstock + qty WHERE itemcode = itmCode;
+                DELETE FROM salesline WHERE stransactionid = sTransId;
+                DELETE FROM salestransaction WHERE stransactionid = sTransId;
+            ELSE
+                RAISE 'Transaction not found.';
         END IF;
         COMMIT;
     END
