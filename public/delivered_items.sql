@@ -1,6 +1,8 @@
-create view delivered_items(itemcode, itemdescription, itemcost, timestamp) as
-SELECT i.itemcode,
+create view delivered_items(dtransactionid, itemcode, itemdescription, dqty, itemcost, timestamp) as
+SELECT dt.dtransactionid,
+       i.itemcode,
        i.itemdescription,
+       dl.dqty,
        dl.itemcost,
        dt."timestamp"
 FROM deliverytransaction dt

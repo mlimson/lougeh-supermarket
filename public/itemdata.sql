@@ -1,8 +1,10 @@
-create view itemdata(itemcode, itemdescription, itembarcode, description) as
+create view itemdata(itemcode, itemdescription, itembarcode, uomid, description, itemprice) as
 SELECT DISTINCT it.itemcode,
                 it.itemdescription,
                 it.itembarcode,
-                u.description
+                u.uomid,
+                u.description,
+                it.itemprice
 FROM item it
          LEFT JOIN itemuom iu ON it.itemcode = iu.itemcode
          LEFT JOIN inventory i ON iu.uniqueid = i.itemuomid

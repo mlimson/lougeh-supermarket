@@ -1,6 +1,9 @@
-create view sold_items(itemcode, itemdescription, saleprice, timestamp) as
-SELECT i.itemcode,
+create view sold_items (stransactionid, customercode, itemcode, itemdescription, sqty, saleprice, timestamp) as
+SELECT st.stransactionid,
+       st.customercode,
+       i.itemcode,
        i.itemdescription,
+       sl.sqty,
        sl.saleprice,
        st."timestamp"
 FROM salestransaction st
